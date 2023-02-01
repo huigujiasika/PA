@@ -109,6 +109,7 @@ static int cmd_si(char *args){
 }
 
 static int cmd_x(char *args){
+  printf("111111111111111111\n");
   char*n =strtok(NULL," ");              //继续对其标记化
   char* exp=strtok(NULL," ");
   int num;
