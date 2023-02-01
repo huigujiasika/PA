@@ -19,9 +19,9 @@
 #include <common.h>
 
 typedef struct {
-  word_t gpr[32];
+  word_t gpr[32];       //寄存器
   vaddr_t pc;
-} riscv32_CPU_state;
+} riscv32_CPU_state;      //cpu定义
 
 // decode
 typedef struct {
