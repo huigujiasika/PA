@@ -35,7 +35,8 @@
 #define PMEM64 1
 #endif
 
-typedef MUXDEF(CONFIG_ISA64, uint64_t, uint32_t) word_t;
+typedef MUXDEF(CONFIG_ISA64, uint64_t, uint32_t) word_t;  
+//这行代码使用 MUXDEF 宏，如果宏 CONFIG_ISA64 被定义，则将类型定义为 uint64_t；如果未定义，则将类型定义为 uint32_t。
 typedef MUXDEF(CONFIG_ISA64, int64_t, int32_t)  sword_t;
 #define FMT_WORD MUXDEF(CONFIG_ISA64, "0x%016"PRIx64, "0x%08"PRIx32)
 

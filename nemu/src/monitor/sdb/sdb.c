@@ -92,6 +92,55 @@ static int cmd_help(char *args) {
   return 0;
 }
 
+
+static int cmd_si(char *args){
+  int num=1;
+  if(args!=NULL)
+    sscanf(args,"%d",&num);
+  cpu_exec(num);            //单步执行num次
+
+  return 0;
+}
+
+static int cmd_x(char *args){
+  char*n =strtok(NULL," ");              //继续对其标记化
+  char* exp=strtok(NULL," ");
+  int num;
+  word_t addr;
+  sscanf(n,"%d",&num);
+  
+  bool success=false;
+  //首先规定只能是16进制数
+  sscanf(exp,"%u",&addr);   //%u用于无符号整型
+
+  printf("%0x%08u:", addr);
+  int i=0;
+  while(num--){
+    printf(" %02x",paddr_read(addr+(i++),1));
+  }
+  putchar('\n');
+  
+  return 0;
+
+}
+
+static int cmd_info(char *args){
+  char *subcmd=strtok(NULL," ");
+
+  switch (subcmd[0])
+  {
+  case 'r':
+    isa_reg_display();
+    break;
+  
+  default:
+    printf("Unsupported subcommand: %s\n", subcmd);
+  }
+
+  return 0;
+}
+
+
 void sdb_set_batch_mode() {
   is_batch_mode = true;
 }
