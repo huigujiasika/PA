@@ -44,7 +44,7 @@ static struct rule {  //正则规则
   {"\\(",'('},
   {"\\)",')'},
   {"0x[A-Fa-f0-9+",TK_HEX},
-  {"\\$[A-Za-z0-9]+",TK_REG},
+  {"\\$[A-Za-z0-9\\]+",TK_REG},
 };
 
 #define NR_REGEX ARRLEN(rules) //define ARRLEN(arr) (int)(sizeof(arr) / sizeof(arr[0]))
