@@ -175,7 +175,7 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  TODO();
+  make_token(e);
 
   return 0;
 }

@@ -56,6 +56,7 @@ static int cmd_help(char *args);
 static int cmd_x(char *args);
 static int cmd_info(char *args);
 static int cmd_si(char *args);
+static int cmd_qw(char *args);
 
 static struct {
   const char *name;
@@ -68,6 +69,7 @@ static struct {
   {"si","run some step",cmd_si},
   {"info","some info status",cmd_info},
   {"x","search memory",cmd_x},
+  {"qw","1",cmd_qw},
 
   /* TODO: Add more commands */
 
@@ -145,6 +147,12 @@ static int cmd_info(char *args){
   }
 
   return 0;
+}
+
+static int cmd_qw(char *args){
+  char *exp = args;
+  bool success=false;
+  expr(exp,&success);
 }
 
 
