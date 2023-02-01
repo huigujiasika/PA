@@ -108,7 +108,7 @@ static int cmd_si(char *args){
   return 0;
 }
 
-static int cmd_x(char *args){
+static int cmd_x(char *args){  //有问题
   char*n =strtok(NULL," ");              //继续对其标记化
   char* exp=strtok(NULL," ");
   
