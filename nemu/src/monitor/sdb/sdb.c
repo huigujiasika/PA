@@ -109,9 +109,9 @@ static int cmd_si(char *args){
 }
 
 static int cmd_x(char *args){
-  printf("111111111111111111\n");
   char*n =strtok(NULL," ");              //继续对其标记化
   char* exp=strtok(NULL," ");
+  
   int num;
   word_t addr;
   sscanf(n,"%d",&num);
@@ -120,7 +120,7 @@ static int cmd_x(char *args){
   //首先规定只能是16进制数
   sscanf(exp,"%u",&addr);   //%u用于无符号整型
 
-  printf("%0x%08u:", addr);
+  printf("%0x%08x:", addr);
   int i=0;
   while(num--){
     printf(" %02x",paddr_read(addr+(i++),1));
