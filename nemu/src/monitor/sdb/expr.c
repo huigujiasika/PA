@@ -81,7 +81,7 @@ static int nr_token __attribute__((used))  = 0;
 void print(){
     int i=0;
     for(int i=0;i<10;i++){
-      printf("%s",tokens[i].str);
+      printf("%s\n",tokens[i].str);
     }
   }
 
