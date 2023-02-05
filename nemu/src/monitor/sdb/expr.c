@@ -168,6 +168,136 @@ static bool make_token(char *e) {  //制造token
   return true;
 }
 
+int checkParantheses(int start,int end){
+  int par_level=0;
+  Assert(start<=end,"start大于end");
+
+  for(int i=start;i<=end;i++){
+    if(tokens[i].type=="(")
+      par_level++;
+    else if(tokens[i].type==")"){
+      par_level--;
+      Assert(par_level>=0,"括号不匹配");
+      if(par_level==0&&i!=end){            //式子开始一定是由括号包裹
+        return false;
+      }
+    }
+  }
+  assert(par_level==0);
+  if (tokens[start].type != '(' || tokens[end].type != ')') 
+    return false;
+  
+  return true;
+
+}
+
+
+int findmainOp(int start,int end){
+  int par_level=0,priority=120,main_operator=-1;
+  for(int i=start;i<=end;i++){
+    if (tokens[i].type == '(') {
+      par_level++;
+    } else if (tokens[i].type == ')') {
+      par_level--;
+    }
+    if (par_level) continue;
+
+    if ((tokens[i].type == TK_DEREF || tokens[i].type == TK_NEG) && priority > 100) {
+      main_operator = i;
+      priority = 100;
+    } else if ((tokens[i].type == '*' || tokens[i].type == '/') && priority >= 80) {
+      main_operator = i;
+      priority = 80;
+    } else if ((tokens[i].type == '+' || tokens[i].type == '-') && priority >= 50) {
+      main_operator = i;
+      priority = 50;
+    } else if (tokens[i].type == TK_AND && priority >= 30) {
+      main_operator = i;
+      priority = 30;
+    } else if ((tokens[i].type == TK_EQ || tokens[i].type == TK_NEQ) && priority >= 20) {
+      main_operator = i;
+      priority = 20;
+    }
+  }
+
+  assert(main_operator != -1);
+  return main_operator;
+
+}
+
+
+
+word_t realOp(word_t val1,word_t val2,int type){
+  switch (type){
+  
+    case '+':
+        return val1 + val2;
+    case '-':
+      return val1 - val2;
+    case '*':
+      return val1 * val2;
+    case '/': 
+      if (val2 == 0) {
+        printf("Invalid Expression(div0 error)\n");
+        return false;
+      }
+      return val1 / val2;
+    case TK_AND:
+      return val1 && val2;
+    case TK_EQ:
+      return val1 == val2;
+    case TK_NEQ:
+      return val1 != val2;
+    default:
+      printf("Invalid Expression\n");
+      return false;
+  }
+}
+
+
+
+word_t evalExp(int start,int end){
+  if(start>end)
+    return 0;
+  else if(start==end){
+    word_t val;
+    if(tokens[start].type==TK_DEC)
+      sscanf(tokens[start].str,"%u",&val);
+    else if(tokens[start].type==TK_HEX)
+      sscanf(tokens[start].str+2,"%x",&val);
+    else if (tokens[start].type==TK_REG)
+    {
+      bool success=false;
+      val=isa_reg_str2val(tokens[start].str+1,&success);
+      if(!success){
+        printf("Invaild Expression(reg)\n");
+        return false;
+      }
+      
+    }
+    return val;
+  }else if(checkParantheses(start,end)==true){     //被括号包裹且符合要求
+    return evalExp(start+1,end-1);
+  }else{
+    int main_operator=findmainOp(start,end);
+
+    word_t val2 = evalExp(main_operator + 1, end);  //不懂
+    switch (tokens[main_operator].type) {
+      case TK_DEREF:
+        return paddr_read(val2, 1);
+      case TK_NEG:
+        return -val2;
+    }
+
+    word_t val1 = evalExp(start, main_operator - 1);
+
+    return realOp(val1,val2,tokens[main_operator].type);
+
+  }
+
+}
+
+
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
@@ -176,7 +306,17 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  make_token(e);
-
-  return 0;
+  for (int i = 0; i < nr_token; i ++) {
+    if (tokens[i].type == '*' && (i == 0 || 
+        (tokens[i-1].type != TK_DEC 
+        && tokens[i-1].type != TK_HEX 
+        && tokens[i-1].type != TK_REG
+        && tokens[i-1].type != ')'  )    )
+        
+        ) 
+      tokens[i].type = TK_DEREF;
+    
+  }
+  *success=true;
+  return evalExp(0,nr_token-1);
 }

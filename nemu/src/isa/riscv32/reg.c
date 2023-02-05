@@ -30,5 +30,12 @@ void isa_reg_display() {               //展示寄存器的值
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
+  for(int i=0;i<=31;i++){
+    if(regs[i]==s){
+      *success=true;
+      return cpu.gpr[i];
+    }
+  }
+
   return 0;
 }
