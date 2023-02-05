@@ -57,6 +57,7 @@ static int cmd_x(char *args);
 static int cmd_info(char *args);
 static int cmd_si(char *args);
 static int cmd_qw(char *args);
+static int cmd_p(char *args);
 
 static struct {
   const char *name;
@@ -70,12 +71,26 @@ static struct {
   {"info","some info status",cmd_info},
   {"x","search memory",cmd_x},
   {"qw","1",cmd_qw},
+  {"p","expression",cmd_p},
 
   /* TODO: Add more commands */
 
 };
 
 #define NR_CMD ARRLEN(cmd_table)
+
+static int cmd_p(char *args){
+  char *exp=args;
+  bool success=false;
+  word_t val=expr(exp,&success);
+
+  if(!success)
+    printf("Invalid Expression\n");
+  else 
+    printf("%u (0x%x)\n",val,val);
+
+  return 0;
+}
 
 static int cmd_help(char *args) {
   /* extract the first argument */
