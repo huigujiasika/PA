@@ -72,10 +72,10 @@ void init_regex() {
 
 typedef struct token {
   int type;
-  char str[64];
+  char str[128];
 } Token;
 
-static Token tokens[64] __attribute__((used)) = {};
+static Token tokens[128] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
 
 void print(){
