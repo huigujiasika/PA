@@ -19,6 +19,8 @@
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
+#include <memory/paddr.h>
+
 
 enum {
   TK_NOTYPE = 256, TK_EQ, TK_DEC, TK_HEX, TK_AND, TK_NEQ, TK_REG, TK_DEREF, TK_NEG
@@ -75,15 +77,15 @@ typedef struct token {
   char str[128];
 } Token;
 
-static Token tokens[128] __attribute__((used)) = {};
+static Token tokens[64] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
 
-void print(){
-    int i=0;
-    for(int i=0;i<10;i++){
-      printf("%s\n",tokens[i].str);
-    }
-  }
+// void print(){
+//     int i=0;
+//     for(int i=0;i<10;i++){
+//       printf("%s\n",tokens[i].str);
+//     }
+//   }
 
 static bool make_token(char *e) {  //制造token
   int position = 0;
@@ -117,11 +119,11 @@ static bool make_token(char *e) {  //制造token
         因此， pmatch.rm_so == 0 的判断是用来确定是否找到了在当前位置开始的与正则表达式匹配的子串。
           
       * /*/
-        char *substr_start = e + position;
+        //char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
 
-        Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
-            i, rules[i].regex, position, substr_len, substr_len, substr_start);
+        // Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
+        //     i, rules[i].regex, position, substr_len, substr_len, substr_start);
 
         position += substr_len;
 
@@ -193,7 +195,9 @@ int checkParantheses(int start,int end){
 
 
 int findmainOp(int start,int end){
+
   int par_level=0,priority=120,main_operator=-1;
+
   for(int i=start;i<=end;i++){
     if (tokens[i].type == '(') {
       par_level++;
@@ -301,7 +305,6 @@ word_t evalExp(int start,int end){
 
 word_t expr(char *e, bool *success) {
 
-
   if (!make_token(e)) {
     *success = false;
     return 0;
@@ -314,11 +317,12 @@ word_t expr(char *e, bool *success) {
         && tokens[i-1].type != TK_HEX 
         && tokens[i-1].type != TK_REG
         && tokens[i-1].type != ')'  )    )
-        
         ) 
       tokens[i].type = TK_DEREF;
     
   }
   *success=true;
+
+
   return evalExp(0,nr_token-1);
 }
