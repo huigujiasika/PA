@@ -220,7 +220,7 @@ int findmainOp(int start,int end){
     }
   }
 
-  //assert(main_operator != -1);
+  assert(main_operator != -1);
   return main_operator;
 
 }
