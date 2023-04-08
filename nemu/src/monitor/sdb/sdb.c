@@ -20,12 +20,14 @@
 #include "sdb.h"
 
 static int is_batch_mode = false;
+// ? 
 
 void init_regex();
 void init_wp_pool();
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char* rl_gets() {
+
   static char *line_read = NULL;
 
   if (line_read) {
@@ -70,14 +72,16 @@ static struct {
   {"si","run some step",cmd_si},
   {"info","some info status",cmd_info},
   {"x","search memory",cmd_x},
-  {"qw","1",cmd_qw},
+  //{"qw","1",cmd_qw},
   {"p","expression",cmd_p},
 
   /* TODO: Add more commands */
 
 };
 
-#define NR_CMD ARRLEN(cmd_table)
+#define NR_CMD ARRLEN(cmd_table)          // 命令条数
+// define ARRLEN(arr) (int)(sizeof(arr) / sizeof(arr[0]))
+
 
 static int cmd_p(char *args){
   char *exp=args;
@@ -148,6 +152,8 @@ static int cmd_x(char *args){  //有问题
 
 }
 
+
+// TODO::   info w 打印监视点信息
 static int cmd_info(char *args){
   char *subcmd=strtok(NULL," ");
 
@@ -164,6 +170,7 @@ static int cmd_info(char *args){
   return 0;
 }
 
+
 static int cmd_qw(char *args){
   char *exp = args;
   bool success=false;
@@ -171,7 +178,7 @@ static int cmd_qw(char *args){
 }
 
 
-void sdb_set_batch_mode() {
+void sdb_set_batch_mode() {  // 不明白
   is_batch_mode = true;
 }
 
@@ -204,7 +211,7 @@ void sdb_mainloop() {
     int i;
     for (i = 0; i < NR_CMD; i ++) {
       if (strcmp(cmd, cmd_table[i].name) == 0) {
-        if (cmd_table[i].handler(args) < 0) { return; }
+        if (cmd_table[i].handler(args) < 0) { return; }               // 解析调用子命令
         break;
       }
     }
