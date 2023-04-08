@@ -133,8 +133,9 @@ static int cmd_x(char *args){  //有问题
   char*n =strtok(NULL," ");              //取其token
   char* exp=strtok(NULL," ");
   
-  printf("%s",n);
-  printf("%s",exp);
+  printf("%s\n",n);
+  printf("%s\n\n\n\n",exp);
+  
 
 
   int num;
