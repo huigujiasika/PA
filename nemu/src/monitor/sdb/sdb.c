@@ -146,7 +146,7 @@ static int cmd_x(char *args){  //有问题
   //首先规定只能是16进制数
   sscanf(exp,"%u",&addr);   //%u用于无符号整型
 
-  printf("%u",addr);
+  printf("%s",addr);
   assert(0);
 
   printf("%0x%08x:", addr);
