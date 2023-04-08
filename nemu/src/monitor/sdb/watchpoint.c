@@ -118,10 +118,12 @@ void watch_display(){
       bool success;
       uint32_t  result=expr(findWp->exp,&success);
       findWp->result=result;
-      printf("\n%d %s %x\n",findWp->NO,findWp->exp,findWp->result);
+
+      prints("%d",findWp->NO);
+      //printf("\n%d %s %x\n",findWp->NO,findWp->exp,findWp->result);
 
       findWp=findWp->next;
-
+  
     }
 
 }
