@@ -111,7 +111,7 @@ void watch_display(){
     WP* findWp=head;
     printf("%d\n",head->NO);
     printf("%s\n",head->exp);
-    printf("%s\n",head->result);
+    printf("%x\n",head->result);
 
 
     //printf("\n%d\n %s\n %x\n",head->NO,head->exp,head->result);
