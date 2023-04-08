@@ -41,7 +41,7 @@ static int cmd_q(char *args);       //ok
 static int cmd_w(char *args);
 
 void init_wp_pool();
-WP* new_wp(char* exp);
+void new_wp(char* exp);
 void free_wp(WP *wp);
 bool watch_changed(WP** wp);
 void watch_display();

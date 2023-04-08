@@ -33,7 +33,7 @@ void init_wp_pool() {   //初始化
 
 
 /* TODO: Implement the functionality of watchpoint */
-WP* new_wp(char* exp){
+void new_wp(char* exp){
   WP *findWP=free_;
 
   if (findWP==NULL){     
@@ -45,8 +45,10 @@ WP* new_wp(char* exp){
   bool success;
   findWP->exp=exp;
   findWP->result=expr(exp,&success);
-  return findWP;
-
+  
+  findWP->next=head->next;
+  head=findWP;
+  
 }
 
 
