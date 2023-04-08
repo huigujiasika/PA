@@ -116,6 +116,9 @@ void watch_display(){
     // }
     while(findWp){
       bool success=false;
+
+      puts(findWp->exp);
+      
       uint32_t  result=expr(findWp->exp,&success);
       findWp->result=result;
 
