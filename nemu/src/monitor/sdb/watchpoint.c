@@ -120,9 +120,9 @@ void watch_display(){
       findWp->result=result;
       printf("\n%6d %s %x\n",findWp->NO,findWp->exp,findWp->result);
 
+      assert(0);
       findWp=findWp->next;
 
-      assert(0);
     }
 
 }
