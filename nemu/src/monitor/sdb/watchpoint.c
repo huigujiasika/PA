@@ -51,6 +51,7 @@ void new_wp(char* exp){
   if(head==NULL){
     head=findWP;
     head->next=NULL;
+    printf("\n%x",head->result);
 
   }else{
     findWP->next=head;
