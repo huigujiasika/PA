@@ -301,10 +301,7 @@ word_t evalExp(int start,int end){
 
 word_t expr(char *e, bool *success) {
 
-  printf("%s",e);
-  printf("%s",e);
-  printf("%s",e);
-  
+
   if (!make_token(e)) {
     *success = false;
     return 0;
