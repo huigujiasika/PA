@@ -80,12 +80,12 @@ typedef struct token {
 static Token tokens[64] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
 
-// void print(){
-//     int i=0;
-//     for(int i=0;i<10;i++){
-//       printf("%s\n",tokens[i].str);
-//     }
-//   }
+void print(){
+    int i=0;
+    for(int i=0;i<10;i++){
+      printf("%s\n",tokens[i].str);
+    }
+  }
 
 static bool make_token(char *e) {  //制造token
   int position = 0;
@@ -224,6 +224,7 @@ int findmainOp(int start,int end){
     }
   }
 
+  print();
   assert(main_operator != -1);
   return main_operator;
 
