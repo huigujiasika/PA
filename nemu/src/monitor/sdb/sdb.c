@@ -147,6 +147,7 @@ static int cmd_x(char *args){  //有问题
   sscanf(exp,"%u",&addr);   //%u用于无符号整型
 
   printf("addr:%u",addr);
+  printf("why\n");
   assert(0);
 
   printf("%0x%08x:", addr);
