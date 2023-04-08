@@ -166,7 +166,7 @@ static bool make_token(char *e) {  //制造token
       return false;
     }
   }
-  print();
+  //print();
   return true;
 }
 
