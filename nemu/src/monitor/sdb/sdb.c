@@ -86,7 +86,7 @@ static int cmd_q(char *args) {
 static int cmd_p(char *args){
   char *exp=args;
 
-  printf("%s",exp);
+  printf("exp:%s",exp);
   assert(0);
 
   bool success=false;
