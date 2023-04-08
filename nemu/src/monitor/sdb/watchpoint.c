@@ -114,7 +114,6 @@ void watch_display(){
 
     //   findWp=findWp->next;
     // }
-    assert(0);
     while(findWp){
       bool success;
       uint32_t  result=expr(findWp->exp,&success);
@@ -122,6 +121,8 @@ void watch_display(){
       printf("\n%6d %s %x\n",findWp->NO,findWp->exp,findWp->result);
 
       findWp=findWp->next;
+
+      assert(0);
     }
 
 }
