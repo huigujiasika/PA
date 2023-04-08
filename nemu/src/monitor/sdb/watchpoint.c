@@ -50,11 +50,9 @@ void new_wp(char* exp){
   
   if(head==NULL){
     head=findWP;
-
-    puts(head->exp);
     head->next=NULL;
   }else{
-    findWP->next=head->next;
+    findWP->next=head;
     head=findWP;
   }
 
