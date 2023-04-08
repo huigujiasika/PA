@@ -46,8 +46,14 @@ void new_wp(char* exp){
   findWP->exp=exp;
   findWP->result=expr(exp,&success);
   
-  findWP->next=head->next;
-  head=findWP;
+  if(head==NULL){
+    head=findWP;
+    head->next=NULL;
+  }else{
+    findWP->next=head->next;
+    head=findWP;
+  }
+
   
 }
 
