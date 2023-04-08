@@ -172,7 +172,6 @@ static int cmd_x(char *args){  //需要调整
 // TODO::   info w 打印监视点信息
 static int cmd_info(char *args){
   char *subcmd=strtok(NULL," ");
-  puts("11111111111");
   
   switch (subcmd[0])
   {
