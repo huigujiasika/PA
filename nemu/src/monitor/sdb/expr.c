@@ -224,7 +224,7 @@ int findmainOp(int start,int end){
     }
   }
 
-  print();
+  //print();
   assert(main_operator != -1);
   return main_operator;
 
