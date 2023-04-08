@@ -129,7 +129,8 @@ static int cmd_si(char *args){
   return 0;
 }
 
-static int cmd_x(char *args){  //有问题
+static int cmd_x(char *args){  //需要调整
+  panic("需要调整");
   char*n =strtok(NULL," ");             
   //On the first call to strtok(), the string to be parsed should be specified in str.
   //之后不需要再指定
@@ -146,7 +147,7 @@ static int cmd_x(char *args){  //有问题
 
   int i=0;
   while(num--){
-    printf(" %02x",paddr_read(addr+(i++),1));
+    printf(" %02x",paddr_read( addr+(i++) ,1 )  );
   }
   putchar('\n');
   

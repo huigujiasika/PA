@@ -21,7 +21,7 @@
 word_t expr(char *e, bool *success);
 
 static int cmd_help(char *args);    //ok
-static int cmd_x(char *args);       
+static int cmd_x(char *args);       //ok   但是目前只能扫描特定的
 static int cmd_info(char *args);    //ok
 static int cmd_si(char *args);      //ok
 static int cmd_qw(char *args);
