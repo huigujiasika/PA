@@ -65,7 +65,7 @@ uint32_t gethead(){
 }
 
 void printexp(){
-  printf("%d\n",strlen(head->exp));
+  printf("%c\n",head->exp[0]);
 }
 
 
