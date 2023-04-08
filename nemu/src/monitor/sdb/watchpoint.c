@@ -65,7 +65,7 @@ uint32_t gethead(){
 }
 
 void printexp(){
-  printf("%d",strlen(head->exp));
+  printf("%d\n",strlen(head->exp));
 }
 
 
@@ -114,6 +114,9 @@ bool watch_changed(WP** wp){   //要返回指针
 void watch_display(){
     WP* findWp=head;
     printexp();
+    printexp();
+    printexp();
+
 
 
     //printf("\n%d\n %s\n %x\n",head->NO,head->exp,head->result);
