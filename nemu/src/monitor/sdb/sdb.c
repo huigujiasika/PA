@@ -135,24 +135,15 @@ static int cmd_x(char *args){  //有问题
   //之后不需要再指定
   char* exp=strtok(NULL," ");
   
-  printf("%s\n",n);
-  printf("%s\n\n\n\n",exp);
-
   int num;
-  uint32_t addr;
-  
+  uint32_t addr;   //无符号 16进制
+
   sscanf(n,"%d",&num);
   
   bool success=false;
   //首先规定只能是16进制数
-  sscanf(exp,"%x",&addr);   //%u用于无符号整型
+  sscanf(exp,"%x",&addr);   
 
-  printf("addr:%p",addr);
-  printf("why\n");
-
-  assert(0);
-
-  printf("%0x%08x:", addr);
   int i=0;
   while(num--){
     printf(" %02x",paddr_read(addr+(i++),1));
