@@ -20,13 +20,13 @@
 
 word_t expr(char *e, bool *success);
 
-static int cmd_help(char *args);
-static int cmd_x(char *args);
-static int cmd_info(char *args);
-static int cmd_si(char *args);
+static int cmd_help(char *args);    //ok
+static int cmd_x(char *args);       
+static int cmd_info(char *args);    //ok
+static int cmd_si(char *args);      //ok
 static int cmd_qw(char *args);
-static int cmd_p(char *args);
-static int cmd_c(char *args);
-static int cmd_q(char *args);
+static int cmd_p(char *args);       
+static int cmd_c(char *args);       //ok
+static int cmd_q(char *args);       //ok
 
 #endif

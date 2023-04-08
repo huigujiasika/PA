@@ -59,7 +59,7 @@ static struct {
   {"si","run some step",cmd_si},  //ok
   {"info","some info status",cmd_info},
   {"x","search memory",cmd_x},
-  //{"qw","1",cmd_qw},
+  {"qw","1",cmd_qw},        //简易表达式求值
   {"p","expression",cmd_p},
 
   /* TODO: Add more commands */
