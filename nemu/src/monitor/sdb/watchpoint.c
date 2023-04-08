@@ -121,19 +121,6 @@ void watch_display(){
 
     printf("\nNum  exp       result");
 
-    // while(findWp){
-    //   bool success;
-    //   uint32_t  result=expr(findWp->exp,&success);
-    //   if(findWp->result!=result){
-    //     printf("\n%6d %s\n",findWp->NO,findWp->exp);
-    //     findWp->result=result;
-    //   }
-
-    //   findWp=findWp->next;
-    // }
-    //puts(head->exp);
-    //printf("\n%d",findWp->NO);
-
     while(findWp){
       bool success=false;
 
