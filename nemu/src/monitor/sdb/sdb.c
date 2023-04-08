@@ -18,7 +18,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "sdb.h"
-#include "watchpoint.c"
+
 
 // static : only in this file can use its function
 
