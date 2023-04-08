@@ -25,6 +25,8 @@ void init_wp_pool() {   //初始化
   for (i = 0; i < NR_WP; i ++) {
     wp_pool[i].NO = i;
     wp_pool[i].next = (i == NR_WP - 1 ? NULL : &wp_pool[i + 1]);
+    wp_pool[i].exp="";
+    wp_pool[i].result=0;
   }
 
   head = NULL;
@@ -44,7 +46,6 @@ void new_wp(char* exp){
 
   bool success;
   findWP->exp=exp;
-  
   findWP->result=expr(exp,&success);
   
   if(head==NULL){
