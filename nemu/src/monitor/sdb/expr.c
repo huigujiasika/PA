@@ -194,7 +194,7 @@ int checkParantheses(int start,int end){
 }
 
 
-int findmainOp(int start,int end){
+int findMainOp(int start,int end){
 
   int par_level=0,priority=120,main_operator=-1;
 
