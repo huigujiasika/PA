@@ -84,9 +84,9 @@ static int cmd_q(char *args) {
 
 
 static int cmd_p(char *args){
-  printf("%s\n\n",args);
+  printf("args:%s\n\n",args);
   char *exp=args;
-  printf("%s\n\n",exp);
+  printf("exp:%s\n\n",exp);
   assert(0);
 
   bool success=false;
