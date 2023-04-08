@@ -80,12 +80,12 @@ typedef struct token {
 static Token tokens[64] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
 
-void print(){
-    int i=0;
-    for(int i=0;i<10;i++){
-      printf("%s\n",tokens[i].str);
-    }
-  }
+// void print(){
+//     int i=0;
+//     for(int i=0;i<10;i++){
+//       printf("%s\n",tokens[i].str);
+//     }
+//   }
 
 static bool make_token(char *e) {  //制造token
   int position = 0;
@@ -232,61 +232,100 @@ int findmainOp(int start,int end){
 
 
 
-word_t realOp(word_t val1,word_t val2,int type){
-  switch (type){
+// word_t realOp(word_t val1,word_t val2,int type){
+//   switch (type){
   
-    case '+':
-        return val1 + val2;
-    case '-':
-      return val1 - val2;
-    case '*':
-      return val1 * val2;
-    case '/': 
-      if (val2 == 0) {
-        printf("Invalid Expression(div0 error)\n");
-        return false;
-      }
-      return val1 / val2;
-    case TK_AND:
-      return val1 && val2;
-    case TK_EQ:
-      return val1 == val2;
-    case TK_NEQ:
-      return val1 != val2;
-    default:
-      printf("Invalid Expression\n");
-      return false;
-  }
-}
+//     case '+':
+//         return val1 + val2;
+//     case '-':
+//       return val1 - val2;
+//     case '*':
+//       return val1 * val2;
+//     case '/': 
+//       if (val2 == 0) {
+//         printf("Invalid Expression(div0 error)\n");
+//         return false;
+//       }
+//       return val1 / val2;
+//     case TK_AND:
+//       return val1 && val2;
+//     case TK_EQ:
+//       return val1 == val2;
+//     case TK_NEQ:
+//       return val1 != val2;
+//     default:
+//       printf("Invalid Expression\n");
+//       return false;
+//   }
+// }
 
 
 
-word_t evalExp(int start,int end){
-  if(start>end)
-    return 0;
-  else if(start==end){
-    word_t val;
-    if(tokens[start].type==TK_DEC)
-      sscanf(tokens[start].str,"%u",&val);
-    else if(tokens[start].type==TK_HEX)
-      sscanf(tokens[start].str+2,"%x",&val);
-    else if (tokens[start].type==TK_REG)
-    {
-      bool success=false;
-      val=isa_reg_str2val(tokens[start].str+1,&success);
-      if(!success){
-        printf("Invaild Expression(reg)\n");
-        return false;
-      }
+// word_t evalExp(int start,int end){
+//   if(start>end)
+//     return 0;
+//   else if(start==end){
+//     word_t val;
+//     if(tokens[start].type==TK_DEC)
+//       sscanf(tokens[start].str,"%u",&val);
+//     else if(tokens[start].type==TK_HEX)
+//       sscanf(tokens[start].str+2,"%x",&val);
+//     else if (tokens[start].type==TK_REG)
+//     {
+//       bool success=false;
+//       val=isa_reg_str2val(tokens[start].str+1,&success);
+//       if(!success){
+//         printf("Invaild Expression(reg)\n");
+//         return false;
+//       }
       
+//     }
+//     return val;
+//   }else if(checkParantheses(start,end)==true){     //被括号包裹且符合要求
+//     return evalExp(start+1,end-1);
+//   }else{
+//     int main_operator=findmainOp(start,end);
+
+//     word_t val2 = evalExp(main_operator + 1, end);  //不懂
+//     switch (tokens[main_operator].type) {
+//       case TK_DEREF:
+//         return paddr_read(val2, 1);
+//       case TK_NEG:
+//         return -val2;
+//     }
+
+//     word_t val1 = evalExp(start, main_operator - 1);
+
+//     return realOp(val1,val2,tokens[main_operator].type);
+
+//   }
+
+// }
+
+word_t evalExp(int start, int end) {
+  if (start > end) {
+    return 0;
+  } else if (start == end) {
+    word_t val;
+    if (tokens[start].type == TK_DEC) {
+      sscanf(tokens[start].str, "%u", &val);
+    } else if (tokens[start].type == TK_HEX) {
+      sscanf(tokens[start].str + 2, "%x", &val);
+    } else if (tokens[start].type == TK_REG) {
+      bool success = false;
+      val = isa_reg_str2val(tokens[start].str + 1, &success);
+      if (!success) {
+        printf("Invalid Expression\n");
+        return false;
+      }
     }
     return val;
-  }else if(checkParantheses(start,end)==true){     //被括号包裹且符合要求
-    return evalExp(start+1,end-1);
-  }else{
-    int main_operator=findmainOp(start,end);
-
-    word_t val2 = evalExp(main_operator + 1, end);  //不懂
+  } else if (checkParentheses(start, end) == true) {
+    return evalExp(start + 1, end - 1);
+  } else {
+    int main_operator = findMainOp(start, end);
+    
+    word_t val2 = evalExp(main_operator + 1, end);
     switch (tokens[main_operator].type) {
       case TK_DEREF:
         return paddr_read(val2, 1);
@@ -295,12 +334,37 @@ word_t evalExp(int start,int end){
     }
 
     word_t val1 = evalExp(start, main_operator - 1);
-
-    return realOp(val1,val2,tokens[main_operator].type);
-
+    switch (tokens[main_operator].type) {
+      case '+':
+        return val1 + val2;
+      case '-':
+        return val1 - val2;
+      case '*':
+        return val1 * val2;
+      case '/': 
+        if (val2 == 0) {
+          printf("Invalid Expression\n");
+          return false;
+        }
+        return val1 / val2;
+      case TK_AND:
+        return val1 && val2;
+      case TK_EQ:
+        return val1 == val2;
+      case TK_NEQ:
+        return val1 != val2;
+      default:
+        printf("Invalid Expression\n");
+        return false;
+    }
   }
-
 }
+
+
+
+
+
+
 
 
 
