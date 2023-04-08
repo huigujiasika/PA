@@ -117,6 +117,9 @@ void watch_display(){
     //   findWp=findWp->next;
     // }
     puts(head->exp);
+    printf("\n%d",findWp->NO);
+    printf("\n%x",findWp->result);
+    
     assert(0);
 
 
