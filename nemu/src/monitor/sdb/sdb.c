@@ -18,9 +18,12 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "sdb.h"
+// static : only in this file can use its function
 
-static int is_batch_mode = false;
+
 // ? 
+static int is_batch_mode = false;
+
 
 void init_regex();
 void init_wp_pool();
@@ -44,32 +47,16 @@ static char* rl_gets() {
   return line_read;
 }
 
-static int cmd_c(char *args) {
-  cpu_exec(-1);
-  return 0;
-}
-
-
-static int cmd_q(char *args) {
-  return -1;
-}
-
-static int cmd_help(char *args);
-static int cmd_x(char *args);
-static int cmd_info(char *args);
-static int cmd_si(char *args);
-static int cmd_qw(char *args);
-static int cmd_p(char *args);
 
 static struct {
   const char *name;
   const char *description;
   int (*handler) (char *);
 } cmd_table [] = {
-  { "help", "Display information about all supported commands", cmd_help },
-  { "c", "Continue the execution of the program", cmd_c },
-  { "q", "Exit NEMU", cmd_q },
-  {"si","run some step",cmd_si},
+  { "help", "Display information about all supported commands", cmd_help },  //ok
+  { "c", "Continue the execution of the program", cmd_c },  
+  { "q", "Exit NEMU", cmd_q },   //ok
+  {"si","run some step",cmd_si},  //ok
   {"info","some info status",cmd_info},
   {"x","search memory",cmd_x},
   //{"qw","1",cmd_qw},
@@ -81,6 +68,19 @@ static struct {
 
 #define NR_CMD ARRLEN(cmd_table)          // 命令条数
 // define ARRLEN(arr) (int)(sizeof(arr) / sizeof(arr[0]))
+
+
+
+static int cmd_c(char *args) {
+  cpu_exec(-1);
+  return 0;
+}
+
+
+static int cmd_q(char *args) {
+  return -1;
+}
+
 
 
 static int cmd_p(char *args){
@@ -96,18 +96,18 @@ static int cmd_p(char *args){
   return 0;
 }
 
-static int cmd_help(char *args) {
+static int cmd_help(char *args) {   
   /* extract the first argument */
   char *arg = strtok(NULL, " ");
   int i;
 
-  if (arg == NULL) {
+  if (arg == NULL) {      //全部
     /* no argument given */
     for (i = 0; i < NR_CMD; i ++) {
       printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
     }
   }
-  else {
+  else {                //单指
     for (i = 0; i < NR_CMD; i ++) {
       if (strcmp(arg, cmd_table[i].name) == 0) {
         printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
