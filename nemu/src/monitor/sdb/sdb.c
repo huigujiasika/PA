@@ -84,10 +84,8 @@ static int cmd_q(char *args) {
 
 
 static int cmd_p(char *args){
-  printf("args:%s\n\n",args);
+
   char *exp=args;
-  printf("exp:%s\n\n",exp);
-  assert(0);
 
   bool success=false;
   word_t val=expr(exp,&success);
