@@ -75,6 +75,8 @@ static struct {
 
 static int cmd_w(char *args){
   char *exp=args;
+
+  puts(exp);
   new_wp(exp);
   
   return 0;
