@@ -88,7 +88,7 @@ static int cmd_p(char *args){
 
   print("11111111111111111111");
   printf("exp:%s",exp);
-  assert(0);
+  
 
   bool success=false;
   word_t val=expr(exp,&success);
