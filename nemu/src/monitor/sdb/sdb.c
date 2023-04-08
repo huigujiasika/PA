@@ -77,7 +77,7 @@ static int cmd_w(char *args){
   char *exp=args;
   new_wp(exp);
 
-  printf("%x",gethead());
+  printf("\n\n\n%x",gethead());
   
   return 0;
 }
