@@ -180,8 +180,6 @@ static int cmd_info(char *args){
     break;
 
   case 'w':
-    printexp();
-    puts("111111111\n");
     watch_display();
     break;
 

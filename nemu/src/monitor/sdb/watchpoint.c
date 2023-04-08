@@ -18,6 +18,7 @@
 
 static WP wp_pool[NR_WP] = {};
 static WP *head = NULL, *free_ = NULL;
+
 //head 使用中 free 空闲
 
 void init_wp_pool() {   //初始化
@@ -64,7 +65,7 @@ uint32_t gethead(){
 }
 
 void printexp(){
-  printf("%s",head->exp);
+  printf("%c",head->exp[0]);
 }
 
 
