@@ -141,7 +141,7 @@ void watch_display(){
       findWp->result=result;
 
       //printf("%d\n",findWp->NO);
-      printf("\n%05d %s %x\n",findWp->NO,findWp->exp,findWp->result);
+      printf("\n%-5d %s %x\n",findWp->NO,findWp->exp,findWp->result);
 
       findWp=findWp->next;
 
