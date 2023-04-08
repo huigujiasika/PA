@@ -37,6 +37,8 @@ void init_wp_pool() {   //初始化
 
 /* TODO: Implement the functionality of watchpoint */
 void new_wp(char* exp){
+  //exp此处为局部变量 不能直接赋值 会被回收 cao
+
   WP *findWP=free_;
 
   if (findWP==NULL){     
@@ -46,7 +48,9 @@ void new_wp(char* exp){
   free_=free_->next;
 
   bool success;
-  findWP->exp=exp;
+  findWP->exp=(char *)malloc(strlen(exp)+1);
+  strcpy(findWP->exp,exp);
+
   findWP->result=expr(exp,&success);
   
   if(head==NULL){
@@ -59,6 +63,7 @@ void new_wp(char* exp){
   }
 
 }
+
 
 uint32_t gethead(){
   return head->result;
@@ -113,15 +118,6 @@ bool watch_changed(WP** wp){   //要返回指针
 
 void watch_display(){
     WP* findWp=head;
-    printexp();
-    printexp();
-    printexp();
-
-
-
-    //printf("\n%d\n %s\n %x\n",head->NO,head->exp,head->result);
-    assert(0);
-
 
     printf("\nNum    exp        \n\n");
 
