@@ -144,9 +144,9 @@ static int cmd_x(char *args){  //有问题
   
   bool success=false;
   //首先规定只能是16进制数
-  sscanf(exp,"addr:%u",&addr);   //%u用于无符号整型
+  sscanf(exp,"%u",&addr);   //%u用于无符号整型
 
-  printf("%u",addr);
+  printf("addr:%u",addr);
   assert(0);
 
   printf("%0x%08x:", addr);
