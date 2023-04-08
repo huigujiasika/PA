@@ -96,13 +96,22 @@ void watch_display(){
     WP* findWp=head;
     printf("\nNum    exp        \n\n");
 
+    // while(findWp){
+    //   bool success;
+    //   uint32_t  result=expr(findWp->exp,&success);
+    //   if(findWp->result!=result){
+    //     printf("\n%6d %s\n",findWp->NO,findWp->exp);
+    //     findWp->result=result;
+    //   }
+
+    //   findWp=findWp->next;
+    // }
+
     while(findWp){
       bool success;
       uint32_t  result=expr(findWp->exp,&success);
-      if(findWp->result!=result){
-        printf("\n%6d %s\n",findWp->NO,findWp->exp);
-        findWp->result=result;
-      }
+      findWp->result=result;
+      printf("\n%6d %s %x\n",findWp->NO,findWp->exp,findWp->result);
 
       findWp=findWp->next;
     }
