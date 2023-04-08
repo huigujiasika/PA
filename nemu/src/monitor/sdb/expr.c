@@ -170,7 +170,7 @@ static bool make_token(char *e) {  //制造token
   return true;
 }
 
-int checkParantheses(int start,int end){
+int CheckParantheses(int start,int end){
   int par_level=0;
   Assert(start<=end,"start大于end");
 
