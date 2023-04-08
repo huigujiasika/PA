@@ -180,7 +180,6 @@ static int cmd_info(char *args){
     break;
 
   case 'w':
-    printf("\n\n\n%x",gethead());
     watch_display();
     break;
 
