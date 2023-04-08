@@ -39,8 +39,8 @@ void new_wp(char* exp){
   WP *findWP=free_;
 
   if (findWP==NULL){     
-    assert(0);
     printf("\n监视点不够\n");
+    assert(0);
   }
   free_=free_->next;
 
@@ -50,6 +50,8 @@ void new_wp(char* exp){
   
   if(head==NULL){
     head=findWP;
+
+    puts(head->exp);
     head->next=NULL;
   }else{
     findWP->next=head->next;
@@ -119,7 +121,7 @@ void watch_display(){
     puts(head->exp);
     printf("\n%d",findWp->NO);
     printf("\n%x",findWp->result);
-    
+
     assert(0);
 
 
