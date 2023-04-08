@@ -130,7 +130,7 @@ static int cmd_si(char *args){
 }
 
 static int cmd_x(char *args){  //需要调整
-  panic("需要调整");
+  //panic("需要调整");
   char*n =strtok(NULL," ");             
   //On the first call to strtok(), the string to be parsed should be specified in str.
   //之后不需要再指定
