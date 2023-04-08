@@ -130,13 +130,13 @@ static int cmd_si(char *args){
 }
 
 static int cmd_x(char *args){  //有问题
-  char*n =strtok(NULL," ");              //取其token
+  char*n =strtok(NULL," ");             
+  //On the first call to strtok(), the string to be parsed should be specified in str.
+  //之后不需要再指定
   char* exp=strtok(NULL," ");
   
   printf("%s\n",n);
   printf("%s\n\n\n\n",exp);
-  
-
 
   int num;
   word_t addr;
@@ -145,6 +145,9 @@ static int cmd_x(char *args){  //有问题
   bool success=false;
   //首先规定只能是16进制数
   sscanf(exp,"%u",&addr);   //%u用于无符号整型
+
+  printf("%u",addr);
+  assert(0);
 
   printf("%0x%08x:", addr);
   int i=0;
