@@ -4,11 +4,14 @@
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
+
 #include <regex.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+
+//myTODO: 别处搞过来的,之后可以研究  关于此处生成调试的实现也没有写
 enum {
   TK_NOTYPE = 0x41, TK_EQ, 
   NUM, HEX, TK_UEQ, REG, DEREF, MINUS
@@ -87,8 +90,8 @@ static bool make_token(const char *e) {
           assert(0);
         }
 
-        Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
-            i, rules[i].regex, position, substr_len, substr_len, substr_start);
+        // Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
+        //     i, rules[i].regex, position, substr_len, substr_len, substr_start);
 
         position += substr_len;
         

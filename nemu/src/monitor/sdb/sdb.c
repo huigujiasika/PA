@@ -18,6 +18,8 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "sdb.h"
+#include "watchpoint.c"
+
 // static : only in this file can use its function
 
 
@@ -60,7 +62,8 @@ static struct {
   {"info","some info status",cmd_info},
   {"x","search memory",cmd_x},
   {"qw","1",cmd_qw},        //简易表达式求值
-  {"p","expression",cmd_p},
+  {"p","expression",cmd_p},   //ok 
+  {"w","watch point",cmd_w},
 
   /* TODO: Add more commands */
 
@@ -70,11 +73,19 @@ static struct {
 // define ARRLEN(arr) (int)(sizeof(arr) / sizeof(arr[0]))
 
 
+static int cmd_w(char *args){
+  char *exp=args;
+  new_wp(exp);
+  
+  return 0;
+}
+
 
 static int cmd_c(char *args) {
   cpu_exec(-1);
   return 0;
 }
+
 
 
 static int cmd_q(char *args) {
@@ -167,7 +178,11 @@ static int cmd_info(char *args){
   case 'r':
     isa_reg_display();
     break;
-  
+
+  case 'w':
+    isa_watch_display();
+    break;
+
   default:
     printf("Unsupported subcommand: %s\n", subcmd);
   }
@@ -186,6 +201,8 @@ static int cmd_qw(char *args){
 void sdb_set_batch_mode() {  // 不明白
   is_batch_mode = true;
 }
+
+
 
 void sdb_mainloop() {
   if (is_batch_mode) {
@@ -224,6 +241,8 @@ void sdb_mainloop() {
     if (i == NR_CMD) { printf("Unknown command '%s'\n", cmd); }
   }
 }
+
+
 
 void init_sdb() {
   /* Compile the regular expressions. */

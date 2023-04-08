@@ -18,6 +18,16 @@
 
 #include <common.h>
 
+typedef struct watchpoint {
+  int NO;
+  struct watchpoint *next;
+
+  /* TODO: Add more members if necessary */
+  uint32_t result;
+  char* exp;
+
+} WP;
+
 word_t expr(char *e, bool *success);
 
 static int cmd_help(char *args);    //ok
@@ -28,5 +38,13 @@ static int cmd_qw(char *args);
 static int cmd_p(char *args);       
 static int cmd_c(char *args);       //ok
 static int cmd_q(char *args);       //ok
+static int cmd_w(char *args);
+
+void init_wp_pool();
+WP* new_wp(char* exp);
+void free_wp(WP *wp);
+bool watch_changed(WP** wp);
+void watch_display();
+
 
 #endif
