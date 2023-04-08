@@ -51,6 +51,8 @@ void new_wp(char* exp){
   if(head==NULL){
     head=findWP;
     head->next=NULL;
+
+    printf("%d",head->NO);
   }else{
     findWP->next=head;
     head=findWP;
@@ -103,7 +105,6 @@ bool watch_changed(WP** wp){   //要返回指针
 
 
 void watch_display(){
-    assert(head==NULL);
     WP* findWp=head;
     printf("\nNum    exp        \n\n");
 
