@@ -52,10 +52,6 @@ void new_wp(char* exp){
     head=findWP;
     head->next=NULL;
     
-    printf("%s\n",head->exp);
-    printf("%s\n",head->exp);
-    printf("%s\n",head->exp);
-
   }else{
     findWP->next=head;
     head=findWP;
@@ -65,6 +61,10 @@ void new_wp(char* exp){
 
 uint32_t gethead(){
   return head->result;
+}
+
+void printexp(){
+  printf("%s",head->exp);
 }
 
 
@@ -112,9 +112,7 @@ bool watch_changed(WP** wp){   //要返回指针
 
 void watch_display(){
     WP* findWp=head;
-    printf("%d\n",head->NO);
-    printf("%s\n",head->exp);
-    printf("%x\n",head->result);
+    printexp();
 
 
     //printf("\n%d\n %s\n %x\n",head->NO,head->exp,head->result);
