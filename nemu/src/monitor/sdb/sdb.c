@@ -180,7 +180,7 @@ static int cmd_info(char *args){
     break;
 
   case 'w':
-    isa_watch_display();
+    watch_display();
     break;
 
   default:
