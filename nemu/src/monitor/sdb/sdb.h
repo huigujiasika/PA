@@ -45,6 +45,7 @@ void new_wp(char* exp);
 void free_wp(WP *wp);
 bool watch_changed(WP** wp);
 void watch_display();
+uint32_t gethead();
 
 
 #endif
