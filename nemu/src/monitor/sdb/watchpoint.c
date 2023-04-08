@@ -44,6 +44,8 @@ void new_wp(char* exp){
 
   bool success;
   findWP->exp=exp;
+  puts(findWP->exp);
+  
   findWP->result=expr(exp,&success);
   
   if(head==NULL){
@@ -117,8 +119,6 @@ void watch_display(){
     while(findWp){
       bool success=false;
 
-      puts(findWp->exp);
-      
       uint32_t  result=expr(findWp->exp,&success);
       findWp->result=result;
 
