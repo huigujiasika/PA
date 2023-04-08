@@ -119,7 +119,7 @@ bool watch_changed(WP** wp){   //要返回指针
 void watch_display(){
     WP* findWp=head;
 
-    printf("\nNum    exp        ");
+    printf("\nNum  exp        ");
 
     // while(findWp){
     //   bool success;
@@ -141,7 +141,7 @@ void watch_display(){
       findWp->result=result;
 
       //printf("%d\n",findWp->NO);
-      printf("\n%d %s %x\n",findWp->NO,findWp->exp,findWp->result);
+      printf("\n%5d %s %x\n",findWp->NO,findWp->exp,findWp->result);
 
       findWp=findWp->next;
 
