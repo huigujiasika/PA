@@ -76,8 +76,6 @@ static struct {
 static int cmd_w(char *args){
   char *exp=args;
   new_wp(exp);
-
-  printf("\n\n\n%x",gethead());
   
   return 0;
 }
@@ -182,6 +180,7 @@ static int cmd_info(char *args){
     break;
 
   case 'w':
+    printf("\n\n\n%x",gethead());
     watch_display();
     break;
 
