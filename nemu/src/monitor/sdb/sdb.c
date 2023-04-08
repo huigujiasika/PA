@@ -130,9 +130,13 @@ static int cmd_si(char *args){
 }
 
 static int cmd_x(char *args){  //有问题
-  char*n =strtok(NULL," ");              //继续对其标记化
+  char*n =strtok(NULL," ");              //取其token
   char* exp=strtok(NULL," ");
   
+  printf("%s",n);
+  printf("%s",exp);
+
+
   int num;
   word_t addr;
   sscanf(n,"%d",&num);
