@@ -139,7 +139,7 @@ static int cmd_x(char *args){  //有问题
   printf("%s\n\n\n\n",exp);
 
   int num;
-  uint16_t addr;
+  unsigned int addr;
   sscanf(n,"%d",&num);
   
   bool success=false;
